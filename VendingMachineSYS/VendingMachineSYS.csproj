@@ -90,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmBurgers.resx">
+      <DependentUpon>FrmBurgers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrderScreen.resx">
       <DependentUpon>FrmOrderScreen.cs</DependentUpon>
     </EmbeddedResource>

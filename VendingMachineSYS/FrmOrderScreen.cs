@@ -27,7 +27,6 @@ namespace VendingMachineSYS
             FrmBurgers to = new FrmBurgers();
             to.Show();
             this.Hide();
-
         }
 
         private void btnDesserts_Click(object sender, EventArgs e)
@@ -63,6 +62,17 @@ namespace VendingMachineSYS
             FrmPaymentSummary to = new FrmPaymentSummary();
             to.Show();
             this.Hide();
+        }
+
+        private void FrmOrderScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Confirmation", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Cancel the form closing
+            }
         }
     }
 }
