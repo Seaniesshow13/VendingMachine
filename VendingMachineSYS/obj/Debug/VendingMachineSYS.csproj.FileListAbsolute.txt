@@ -1,0 +1,10 @@
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\bin\Debug\VendingMachineSYS.exe.config
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\bin\Debug\VendingMachineSYS.exe
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\bin\Debug\VendingMachineSYS.pdb
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.csproj.AssemblyReference.cache
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.Properties.Resources.resources
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.csproj.GenerateResource.cache
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.csproj.CoreCompileInputs.cache
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.exe
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.pdb
+C:\Users\Rewinell\source\repos\VendingMachineSYS\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmOrderScreen.resources
