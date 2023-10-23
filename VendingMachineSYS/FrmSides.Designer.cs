@@ -29,12 +29,33 @@ namespace VendingMachineSYS
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnBackSides = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnBackSides
+            // 
+            this.btnBackSides.Location = new System.Drawing.Point(20, 20);
+            this.btnBackSides.Name = "btnBackSides";
+            this.btnBackSides.Size = new System.Drawing.Size(75, 25);
+            this.btnBackSides.TabIndex = 0;
+            this.btnBackSides.Text = "Back";
+            this.btnBackSides.UseVisualStyleBackColor = true;
+            this.btnBackSides.Click += new System.EventHandler(this.btnBackSides_Click);
+            // 
+            // FrmSides
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBackSides);
+            this.Name = "FrmSides";
             this.Text = "FrmSides";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnBackSides;
     }
 }

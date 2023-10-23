@@ -69,7 +69,11 @@ namespace VendingMachineSYS
             DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Confirmation", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.No)
+            if (result == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+            else
             {
                 e.Cancel = true; // Cancel the form closing
             }

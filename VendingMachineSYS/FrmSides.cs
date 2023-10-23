@@ -16,5 +16,12 @@ namespace VendingMachineSYS
         {
             InitializeComponent();
         }
+
+        private void btnBackSides_Click(object sender, EventArgs e)
+        {
+            Form to = new FrmOrderScreen();
+            to.Show();
+            this.Close();
+        }
     }
 }

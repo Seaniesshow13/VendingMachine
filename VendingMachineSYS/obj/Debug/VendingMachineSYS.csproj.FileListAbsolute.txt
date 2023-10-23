@@ -19,3 +19,8 @@ C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\Vendi
 C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.exe
 C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.pdb
 C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmBurgers.resources
+C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmDesserts.resources
+C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmDrinks.resources
+C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmPaymentSummary.resources
+C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmSides.resources
+C:\Users\t00201634\Source\Repos\VendingMaching\VendingMachineSYS\obj\Debug\VendingMachineSYS.FrmWraps.resources

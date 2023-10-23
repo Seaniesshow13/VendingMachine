@@ -93,8 +93,23 @@
     <EmbeddedResource Include="FrmBurgers.resx">
       <DependentUpon>FrmBurgers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmDesserts.resx">
+      <DependentUpon>FrmDesserts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDrinks.resx">
+      <DependentUpon>FrmDrinks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrderScreen.resx">
       <DependentUpon>FrmOrderScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPaymentSummary.resx">
+      <DependentUpon>FrmPaymentSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSides.resx">
+      <DependentUpon>FrmSides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWraps.resx">
+      <DependentUpon>FrmWraps.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
