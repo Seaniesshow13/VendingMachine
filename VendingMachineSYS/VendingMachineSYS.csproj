@@ -89,6 +89,7 @@
     <Compile Include="FrmWraps.Designer.cs">
       <DependentUpon>FrmWraps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Orders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmBurgers.resx">
