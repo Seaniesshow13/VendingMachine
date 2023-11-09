@@ -8,6 +8,8 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace VendingMachineSYS
 {
+
+  
    public class Categories
     {
         public int CatID;
@@ -54,7 +56,6 @@ namespace VendingMachineSYS
 
             this.Description = description;
         }
-       
 
         
         public void getCategory(int CatID)
@@ -105,10 +106,9 @@ namespace VendingMachineSYS
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            Categories category = new Categories();
-            category.SetCategory(1, "Burgers", "Beef and Chicken");
 
-           
+            Categories category = new Categories();
+            category.SetCategory(1, "Burgers", "Beef and Chicken Burgers");
         }
        
 

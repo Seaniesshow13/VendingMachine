@@ -8,19 +8,43 @@ using System.Threading.Tasks;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
+namespace VendingMachineSYS.Tests
+{
+    [TestClass()]
+    public class CategoriesTests
+    {
+        [TestMethod()]
+        public void GetCategoryTest()
+        {
+            // Arrange
+            Categories category = new Categories();
+            int catID = 1; // Provide a valid CatID for your test
+
+            // Act
+            category.getCategory(catID);
+
+            // Assert
+            // Add assertions to check if the properties of the category object are populated as expected
+            Assert.AreEqual(catID, category.getCatID());
+            Assert.IsNotNull(category.getName());
+            Assert.IsNotNull(category.getDescription());
+        }
+    }
+}
+
 [TestClass]
 public class CategoriesTests
 {
     [TestMethod]
     public void TestSetCategory()
     {
-        // Arrange
+       
         Categories category = new Categories();
 
         // Provide test data
         int catID = 1;
         string name = "Burgers";
-        string description = "Beef and Chicken";
+        string description = "Beef and Chicken Burgers";
 
         category.SetCategory(catID, name, description);
 
