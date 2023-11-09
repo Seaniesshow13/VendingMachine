@@ -8,6 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * 
+ * Program.connectionStr must be explained/expanded!
+ * 
+ */
+
 namespace VendingMachineSYS
 {
     internal class MenuItem

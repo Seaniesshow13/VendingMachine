@@ -8,6 +8,8 @@ namespace VendingMachineSYS
 {
     static class Program
     {
+        internal static string connectionStr;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
