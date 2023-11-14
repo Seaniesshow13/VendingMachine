@@ -8,12 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*
- * 
- * Program.connectionStr must be explained/expanded!
- * 
- */
-
 namespace VendingMachineSYS
 {
     internal class MenuItem
@@ -44,10 +38,29 @@ namespace VendingMachineSYS
             this.calories = calories;
         }
 
-        // Use this function to set an appropriate ID number based on the next ID which can be used in the database without conflict with the primary key constraint.
-        
+        // Use this function to set an appropriate ID number based on the next ID which can be used in the database without conflict with the primary key constraint. 
+
         public void DeduceID()
         {
+           /* Program.connectionStr is the connection string accessed from the Program.cs file as a static member of a project-internally visible Program class.
+            * 
+            * May be declared in Program.cs as:
+            * 
+            * namespace VendingMachineSYS
+            * {
+            *      static class Program
+            *      {
+            *          public static string connectionStr ** Set the Value to the Connection String **;
+            *          
+            *                      .
+            *                      .    ** Class Body (other attributes, methods, etc.) **
+            *                      .
+            *                      
+            *      }
+            * }
+            * 
+            */
+
             OracleConnection connection = new OracleConnection(Program.connectionStr);
             try
             {
