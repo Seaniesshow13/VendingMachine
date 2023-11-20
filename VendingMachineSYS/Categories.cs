@@ -92,25 +92,36 @@ namespace VendingMachineSYS
         }
         public void SetCategory(int catID, string name, string description)
         {
+            // Check if the category already exists in the database
+            if (!CategoryExists(catID))
+            {
+                // If the category does not exist, add it to the database
+                OracleConnection conn = new OracleConnection(DBConnect.oradb);
+                string sqlQuery = "INSERT INTO CATEGORIES (CatID, Name, Description) " +
+                                  "VALUES (:catID, :Name, :Description)";
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                cmd.Parameters.Add(new OracleParameter(":catID", catID));
+                cmd.Parameters.Add(new OracleParameter(":Name", name));
+                cmd.Parameters.Add(new OracleParameter(":Description", description));
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            // If the category already exists, you can choose to handle it in a specific way or simply ignore the addition
+        }
+
+        private bool CategoryExists(int catID)
+        {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            string sqlQuery = "INSERT INTO CATEGORIES (CatID, Name, Description) " +
-                              "VALUES (:catID, :Name, :Description)";
-
+            string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE CatID = :catID";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             cmd.Parameters.Add(new OracleParameter(":catID", catID));
-            cmd.Parameters.Add(new OracleParameter(":Name", name));
-            cmd.Parameters.Add(new OracleParameter(":Description", description));
-
             conn.Open();
-            cmd.ExecuteNonQuery();
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
             conn.Close();
-
-
-            Categories category = new Categories();
-            category.SetCategory(1, "Burgers", "Beef and Chicken Burgers");
+            return count > 0; // Return true if the category exists, false otherwise
         }
-       
+
 
     }
 }
