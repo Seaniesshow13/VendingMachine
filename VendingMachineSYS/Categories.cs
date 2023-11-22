@@ -93,7 +93,7 @@ namespace VendingMachineSYS
         public void SetCategory(int catID, string name, string description)
         {
             // Check if the category already exists in the database
-            if (!CategoryExists(catID))
+            if (!CategoryExists(catID) && !CategoryNameExists(name))
             {
                 // If the category does not exist, add it to the database
                 OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -107,10 +107,25 @@ namespace VendingMachineSYS
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            // If the category already exists, you can choose to handle it in a specific way or simply ignore the addition
+            else
+            {
+                throw new Exception("Category already exists");
+            }
         }
 
-        private bool CategoryExists(int catID)
+        public bool CategoryNameExists(string name)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE Name = :Name";
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            cmd.Parameters.Add(new OracleParameter(":Name", name));
+            conn.Open();
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            return count > 0; // Return true if the category name exists, false otherwise
+        }
+
+        public bool CategoryExists(int catID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE CatID = :catID";
@@ -121,7 +136,6 @@ namespace VendingMachineSYS
             conn.Close();
             return count > 0; // Return true if the category exists, false otherwise
         }
-
 
     }
 }
