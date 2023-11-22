@@ -10,57 +10,46 @@ using System.Windows.Forms;
 
 namespace VendingMachineSYS
 {
-    internal class MenuItem
+    internal class Order
     {
-        private int menuItemId;
-        private string name;
-        private float price;
-        private string description;
-        private int catId;
-        private float calories;
+        private int orderId;
+        private int orderNumber;
+        private int menuId;
 
-        // Specify -1 for menuItemId to create a unique ID for the database.
+        // Specify -1 for orderId to create a unique ID for the database.
 
-        public MenuItem(int menuItemId, string name, float price, string description, int catId, float calories)
+        public Order(int orderId, int orderNumber, int menuId)
         {
-            if (menuItemId == -1)
+            if (orderId == -1)
             {
                 DeduceID();
             } 
             else 
             {
-                this.menuItemId = menuItemId;
+                this.orderId = orderId;
             }
-            this.name = name;
-            this.price = price;
-            this.description = description;
-            this.catId = catId;
-            this.calories = calories;
+            this.orderNumber = orderNumber;
+            this.menuId = menuId;
         }
 
-        public int GetMenuItemId()
+        public int GetOrderId()
         {
-            return menuItemId;
+            return orderId;
         }
-
-        public string GetName()
+        public int GetOrderNumber()
         {
-            return name;
+            return orderNumber;
         }
-        public float GetPrice() 
+        public int GetMenuId() { 
+            return menuId;
+        }
+        public void SetOrderNumber(int orderNumber) 
         { 
-            return price;
+            this.orderNumber=orderNumber;
         }
-        public string GetDescription()
+        public void SetMenuID(int menuId)
         {
-            return description;
-        }
-        public int GetCatId()
-        {
-            return catId;
-        }
-        public float GetCalories() { 
-            return calories;
+            this.menuId=menuId;
         }
 
         // Use this function to set an appropriate ID number based on the next ID which can be used in the database without conflict with the primary key constraint. 
@@ -71,7 +60,7 @@ namespace VendingMachineSYS
             * 
             * May be declared in Program.cs as:
             * 
-            * namespace VendingMachineSYS
+            * orderNumberspace VendingMachineSYS
             * {
             *      static class Program
             *      {
@@ -99,7 +88,7 @@ namespace VendingMachineSYS
 
             int numItems = 0;
             DataSet dataSet = new DataSet("Unnamed");
-            OracleDataAdapter da = new OracleDataAdapter("SELECT * FROM MENU", connection);
+            OracleDataAdapter da = new OracleDataAdapter("SELECT * FROM ORDERS", connection);
             try
             {
                 da.Fill(dataSet);
@@ -107,7 +96,7 @@ namespace VendingMachineSYS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to deduce ID for an instance of \"Menu\".\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to deduce ID for an instance of \"Order\".\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // If there are other Menu objects in the database, deduce the appropriate ID. Set the ID to the greatest existing ID + 1
@@ -116,28 +105,27 @@ namespace VendingMachineSYS
             {
                 try
                 {
-                    OracleDataReader r = new OracleCommand("SELECT MAX(MENUID) FROM MENU", connection).ExecuteReader();
+                    OracleDataReader r = new OracleCommand("SELECT MAX(OID) FROM ORDERS", connection).ExecuteReader();
                     r.Read();
-                    menuItemId = r.GetInt32(0)+1;
+                    orderId = r.GetInt32(0)+1;
                     r.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to deduce ID for an instance of \"Menu\".\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    menuItemId = -1;
+                    MessageBox.Show("Failed to deduce ID for an instance of \"Order\".\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    orderId = -1;
                 }
             }
             else
             {
-                menuItemId = 0;
+                orderId = 0;
             }
             connection.Close();
         }
-        public bool AddMenuItem()
+        public bool AddOrder()
         {
-
-            if (MenuItemExists(menuItemId)) return true;
-            string commandStr = "INSERT INTO MENU VALUES(" + menuItemId + ", '" + name + "', " + price + ", '" + description + "', " + catId + ", " + calories + ")";
+            if (OrderExists(orderId)) return true;
+            string commandStr = "INSERT INTO ORDERS VALUES(" + orderId + ", '" + orderNumber + "', " + menuId + ")";
             try
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
@@ -152,21 +140,20 @@ namespace VendingMachineSYS
             }
             return false;
         }
-
-        private bool MenuItemExists(int miID)
+        private bool OrderExists(int oID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "SELECT COUNT(*) FROM MENU WHERE MENUID = :menuID";
+            string sqlQuery = "SELECT COUNT(*) FROM ORDERS WHERE OID = :OID";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            cmd.Parameters.Add(new OracleParameter(":menuID", miID));
+            cmd.Parameters.Add(new OracleParameter(":OID", oID));
             conn.Open();
             int count = Convert.ToInt32(cmd.ExecuteScalar());
             conn.Close();
             return count > 0; // Return true if the category exists, false otherwise
         }
-        public bool UpdateMenuItem()
+        public bool UpdateOrder()
         {
-            string commandStr = "UPDATE MENU SET MENUID=" + menuItemId + ", NAME='" + name + "', PRICE=" + price + ", DESCRIPTION='" + description + "', CATID=" + catId + ", CALORIES=" + calories + " WHERE MENUID=" + menuItemId;
+            string commandStr = "UPDATE ORDERS SET OID=" + orderId + ", ORDERNUMBER ='" + orderNumber + "', MENUID=" + menuId + " WHERE OID=" + orderId;
             try
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
@@ -182,9 +169,9 @@ namespace VendingMachineSYS
             }
             return false;
         }
-        public bool DeleteMenuItem()
+        public bool DeleteOrder()
         {
-            string commandStr = "DELETE FROM MENU WHERE MENUID=" + menuItemId;
+            string commandStr = "DELETE FROM ORDERS WHERE OID=" + orderId;
             try
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
@@ -199,18 +186,6 @@ namespace VendingMachineSYS
                 MessageBox.Show(commandStr + ": Failed to perform database operation.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-        }
-
-        public static MenuItem FindMenuItemByName(string menuItemName)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-            OracleCommand query = new OracleCommand("SELECT * FROM MENU WHERE NAME LIKE '" + menuItemName + "'", conn);
-            OracleDataReader reader = query.ExecuteReader();
-            reader.Read();
-            MenuItem menuItem = new MenuItem(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2), reader.GetString(3), reader.GetInt32(4), reader.GetFloat(5));
-            conn.Close();
-            return menuItem;
         }
     }
 }
