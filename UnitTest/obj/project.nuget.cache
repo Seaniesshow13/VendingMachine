@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "zSsSVVaYtKfMtyrTtQs4VwBCtXxHczP9e/Djw4r1hQRySH3QabWvCA4NriUPwaF5PUTSFxkSVOFQvnUD1lN6jw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Rewinell\\Downloads\\VendingMachineSYS\\UnitTest\\UnitTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Rewinell\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
+    "C:\\Users\\Rewinell\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",
+    "C:\\Users\\Rewinell\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
+    "C:\\Users\\Rewinell\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512"
+  ],
+  "logs": []
+}

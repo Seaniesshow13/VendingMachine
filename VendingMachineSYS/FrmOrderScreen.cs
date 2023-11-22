@@ -21,7 +21,7 @@ namespace VendingMachineSYS
         {
 
         }
-
+        
         private void btnBurgers_Click(object sender, EventArgs e)
         {
             FrmBurgers to = new FrmBurgers();
