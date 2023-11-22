@@ -93,7 +93,7 @@ namespace VendingMachineSYS
         public void SetCategory(int catID, string name, string description)
         {
             // Check if the category already exists in the database
-            if (!CategoryExists(catID) && !CategoryNameExists(name))
+            if (!CategoryExists(catID))
             {
                 // If the category does not exist, add it to the database
                 OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -107,25 +107,10 @@ namespace VendingMachineSYS
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            else
-            {
-                throw new Exception("Category already exists");
-            }
+            // If the category already exists, you can choose to handle it in a specific way or simply ignore the addition
         }
 
-        public bool CategoryNameExists(string name)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE Name = :Name";
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            cmd.Parameters.Add(new OracleParameter(":Name", name));
-            conn.Open();
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            conn.Close();
-            return count > 0; // Return true if the category name exists, false otherwise
-        }
-
-        public bool CategoryExists(int catID)
+        private bool CategoryExists(int catID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE CatID = :catID";
@@ -137,6 +122,17 @@ namespace VendingMachineSYS
             return count > 0; // Return true if the category exists, false otherwise
         }
 
+        public static Categories FindCategoryByName(string categoryName)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+            OracleCommand query = new OracleCommand("SELECT * FROM CATEGORIES WHERE NAME LIKE '" + categoryName + "'", conn);
+            OracleDataReader reader = query.ExecuteReader();
+            reader.Read();
+            Categories category = new Categories(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+            conn.Close();
+            return category;
+        }
     }
 }
 
