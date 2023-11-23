@@ -107,10 +107,13 @@ namespace VendingMachineSYS
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            // If the category already exists, you can choose to handle it in a specific way or simply ignore the addition
+            else
+            {
+                throw new Exception("Category already exists");
+            }
         }
 
-        private bool CategoryExists(int catID)
+        public bool CategoryExists(int catID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             string sqlQuery = "SELECT COUNT(*) FROM CATEGORIES WHERE CatID = :catID";

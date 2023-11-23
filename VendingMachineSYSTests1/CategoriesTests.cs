@@ -12,6 +12,22 @@ namespace VendingMachineSYS.Tests
     public class CategoriesTests
     {
         [TestMethod()]
+        public void TestFindCategoryByName()
+        {
+            Categories categories = new Categories(1, "Burgers", "Beef and Chicken Burgers");
+
+            Categories soughtCategories = Categories.FindCategoryByName("Burgers");
+
+            Assert.IsNotNull(soughtCategories);
+
+            Assert.AreEqual(categories.getName(), soughtCategories.getName());
+            Assert.AreEqual(categories.getCatID(), soughtCategories.getCatID());
+            Assert.AreEqual(categories.getDescription(), soughtCategories.getDescription());
+        }
+
+
+
+        [TestMethod()]
         public void SetCategoryTest()
         {
 
@@ -27,15 +43,7 @@ namespace VendingMachineSYS.Tests
             Assert.IsTrue(category.CategoryExists(newCatID));
         }
 
-        [TestMethod()]
-        public void CategoryNameExistsTest()
-        {
-            Categories category = new Categories();
-            string existingname = "Burgers";
-
-            // Assert
-            Assert.IsTrue(category.CategoryNameExists(existingname));
-        }
+    
 
         [TestMethod()]
         public void CategoryExistsTest()
